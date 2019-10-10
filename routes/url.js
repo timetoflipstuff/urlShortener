@@ -4,7 +4,7 @@ const redis = require('redis');
 const {promisify} = require('util');
 const murmurhash = require('murmurhash');
 
-const urlBase = '192.168.2.171:8080';
+const urlBase = 'https://infinite-inlet-19708.herokuapp.com/';
 
 const client = redis.createClient();
 const router = express.Router();
