@@ -8,13 +8,15 @@ const url = require('url');
 const urlBase = 'https://infinite-inlet-19708.herokuapp.com/';
 const redisURL = url.parse(process.env.REDIS_URL);
 let client;
+let setnxAsync;
 setTimeout(() => {
     client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
     client.auth(redisURL.auth.split(":")[1]);
+    setnxAsync = promisify(client.setnx).bind(client);
 })
 
 const router = express.Router();
-const setnxAsync = promisify(client.setnx).bind(client);
+
 // POST /api/url/shorten
 router.post('/shorten', async function (req, res) {
     const { longUrl } = req.body;
