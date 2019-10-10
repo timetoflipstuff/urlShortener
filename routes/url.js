@@ -6,7 +6,7 @@ const murmurhash = require('murmurhash');
 
 const urlBase = 'https://infinite-inlet-19708.herokuapp.com/';
 
-const client = redis.createClient('redis://h:pbba1ed4b66de98f4ff7683e7c9441a066206a12fd8f968b265635deed31d729a@ec2-3-229-149-241.compute-1.amazonaws.com:9199');
+const client = redis.createClient(process.env.REDIS_URL);
 
 const router = express.Router();
 const setnxAsync = promisify(client.setnx).bind(client);
