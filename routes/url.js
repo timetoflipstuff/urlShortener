@@ -7,8 +7,18 @@ const url = require('url');
 
 const urlBase = 'https://infinite-inlet-19708.herokuapp.com/';
 const redisURL = url.parse(process.env.REDIS_URL);
-const client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
-client.auth(redisURL.auth.split(":")[1]);
+let client;
+try {
+    client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
+    client.auth(redisURL.auth.split(":")[1]);
+} catch(e) {
+    try {
+        client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
+        client.auth(redisURL.auth.split(":")[1]);
+    } catch(e) {
+        console.log("Not the second time fella");
+    }
+}
 
 const router = express.Router();
 const setnxAsync = promisify(client.setnx).bind(client);
