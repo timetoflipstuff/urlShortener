@@ -12,6 +12,11 @@ const client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_ch
 client.auth(redisURL.auth.split(":")[1]);
 const setnxAsync = promisify(client.setnx).bind(client);
 
+redis.on('error', function (err) {
+    // NOTICE: Enters here
+    console.log("Error " + err);
+})
+
 const router = express.Router();
 
 // POST /api/url/shorten
