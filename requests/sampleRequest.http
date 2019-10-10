@@ -1,0 +1,6 @@
+POST http://localhost:8080/api/url/shorten
+Content-Type: application/json
+
+{
+    "longUrl": "https://soundcloud.com/bellgates"
+}

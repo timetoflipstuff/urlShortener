@@ -1,0 +1,21 @@
+{
+  "name": "urlshorte",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Alex Mikhaylov",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "murmurhash": "0.0.2",
+    "murmurhash-js": "^1.0.0",
+    "node-redis": "^0.1.7",
+    "redis": "^2.8.0",
+    "redis-node": "^0.4.0",
+    "valid-url": "^1.0.9"
+  }
+}
