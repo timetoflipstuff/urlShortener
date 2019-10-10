@@ -3,10 +3,12 @@ const validUrl = require('valid-url');
 const redis = require('redis');
 const {promisify} = require('util');
 const murmurhash = require('murmurhash');
+const url = require('url');
 
 const urlBase = 'https://infinite-inlet-19708.herokuapp.com/';
-console.log(process.env.REDIS_URL);
-const client = redis.createClient(process.env.REDIS_URL);
+const redisURL = url.parse(process.env.REDIS_URL);
+const client = client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
+client.auth(redisURL.auth.split(":")[1]);
 
 const router = express.Router();
 const setnxAsync = promisify(client.setnx).bind(client);
