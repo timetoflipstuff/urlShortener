@@ -7,7 +7,7 @@ const app = express();
 
 const port = 8080;
 
-const redisURL = url.parse(process.env.REDISTOGO_URL || 'redis://redistogo:de7cb3d72c0d15c801919d25b28110ad@hammerjaw.redistogo.com:11523/');
+const redisURL = url.parse(process.env.REDISTOGO_URL || 'some redis url value here');
 //console.log(process.env.REDISTOGO_URL);
 const client = redis.createClient(redisURL.port, redisURL.hostname);
 client.auth(redisURL.auth.split(":")[1]);
