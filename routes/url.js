@@ -6,7 +6,7 @@ const murmurhash = require('murmurhash');
 
 const urlBase = 'https://infinite-inlet-19708.herokuapp.com/';
 
-const client = redis.createClient();
+const client = redis.createClient(process.env.REDIS_URL);
 const router = express.Router();
 const setnxAsync = promisify(client.setnx).bind(client);
 // POST /api/url/shorten
