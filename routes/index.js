@@ -1,16 +1,13 @@
 const express = require('express');
-const validUrl = require('valid-url');
-const redis = require('redis');
-const {promisify} = require('util');
+const server = require('../server.js');
 
-const client = redis.createClient();
 const router = express.Router();
-const getAsync = promisify(client.get).bind(client);
+
 // GET /:code
 router.get('/:code', async function (req, res) {
     try {
-        let longUrl = await getAsync(req.params.code);
-        console.log(longUrl);
+        let longUrl = await server.getLongUrl(req.params.code);
+        console.log(longUrl, req.params.code);
         if (longUrl) {
             return res.redirect(longUrl);
         } else {
@@ -22,4 +19,4 @@ router.get('/:code', async function (req, res) {
     }
 })
 
-module.exports = router
+module.exports = router;

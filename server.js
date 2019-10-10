@@ -12,10 +12,18 @@ const redisURL = url.parse(process.env.REDISTOGO_URL || 'redis://redistogo:de7cb
 const client = redis.createClient(redisURL.port, redisURL.hostname);
 client.auth(redisURL.auth.split(":")[1]);
 const setnxAsync = promisify(client.setnx).bind(client);
+const getAsync = promisify(client.get).bind(client);
+
 async function dbInsert(longUrl) {
-    let shortenedUrl = murmurhash.v3(longUrl);
+    let shortenedUrl = String(murmurhash.v3(longUrl));
+    console.log(shortenedUrl);
     await setnxAsync(shortenedUrl, longUrl);
     return shortenedUrl;
+}
+
+async function getUrl(shortUrl) {
+    let longUrl = await getAsync(shortUrl);
+    return longUrl;
 }
 
 client.on('error', function (err) {
@@ -29,6 +37,7 @@ app.use('/', require('./routes/index'));
 app.use('/api/url', require('./routes/url'));
 
 module.exports.dbInsert = dbInsert;
+module.exports.getLongUrl = getUrl;
 
 app.listen(process.env.PORT || port);
 
