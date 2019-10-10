@@ -14,7 +14,7 @@ Content-Type: application/json
 }
 ```
 ## Installation
-Install all npm dependencies specified in package.json: npm i -S DEPENDENCY
-Modify the redisURL variable in server.js and the urlBase variable in routes/url.js to your needs
+* Install all npm dependencies specified in package.json: npm i -S DEPENDENCY
+* Modify the redisURL variable in server.js and the urlBase variable in routes/url.js to your needs
 ## Start
-npm start
+* npm start
