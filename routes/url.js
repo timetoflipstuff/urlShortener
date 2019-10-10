@@ -5,7 +5,7 @@ const {promisify} = require('util');
 const murmurhash = require('murmurhash');
 
 const urlBase = 'https://infinite-inlet-19708.herokuapp.com/';
-console.log(process.env.REDISTOGO_URL);
+console.log(process.env.REDIS_URL);
 const client = redis.createClient(process.env.REDIS_URL);
 
 const router = express.Router();
