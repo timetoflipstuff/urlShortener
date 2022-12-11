@@ -10,7 +10,7 @@
   "author": "Alex Mikhaylov",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "murmurhash": "0.0.2",
     "murmurhash-js": "^1.0.0",
     "node-redis": "^0.1.7",
